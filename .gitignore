@@ -18,3 +18,4 @@ multi_test.py
 neural_methods/trainer/PhysnetTrainer_backup.py
 debug_utils_physnet.py
 test.yaml
+tools/mamba/selective_scan_cuda.cpython-38-x86_64-linux-gnu.so
