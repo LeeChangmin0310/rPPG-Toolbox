@@ -17,7 +17,7 @@ conda_setup() {
     conda activate rppg-toolbox || exit 1
     pip install torch==2.1.2+cu121 torchvision==0.16.2+cu121 torchaudio==2.1.2+cu121 --index-url https://download.pytorch.org/whl/cu121
     pip install -r requirements.txt || exit 1
-    pip install -e ./mamba || exit 1
+    pip install -e ./tools/mamba || exit 1
 }
 
 # Function to set up using uv
