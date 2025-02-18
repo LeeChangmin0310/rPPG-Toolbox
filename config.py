@@ -353,7 +353,8 @@ _C.NUM_OF_GPU_TRAIN = 1
 # Log settings
 # -----------------------------------------------------------------------------
 _C.LOG = CN()
-_C.LOG.PATH = "runs/exp"
+# _C.LOG.PATH = "runs/exp"
+_C.LOG.PATH = "/home/changmin/log"
 
 
 def _update_config_from_file(config, cfg_file):
