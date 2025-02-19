@@ -240,7 +240,7 @@ class PhysMamba(nn.Module):
 
         x_final = self.poolspa(x_final)
         x_final = self.ConvBlockLast(x_final)
-
+        # print(x_final.shape)
         rPPG = x_final.view(-1, length)
 
         return rPPG    

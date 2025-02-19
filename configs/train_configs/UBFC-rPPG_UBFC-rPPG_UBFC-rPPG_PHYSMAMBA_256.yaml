@@ -22,7 +22,7 @@ TRAIN:
       DATA_AUG: ['None']    # 'None' or 'Motion' is supported, used if the data path points to an augmented dataset or requires augmentation
       LABEL_TYPE: DiffNormalized
       DO_CHUNK: True
-      CHUNK_LENGTH: 128  #only support for factor of 512
+      CHUNK_LENGTH: 256  #only support for factor of 512
       CROP_FACE:
         DO_CROP_FACE: True
         BACKEND: 'HC'    # HC for Haar Cascade, RF for RetinaFace
@@ -52,7 +52,7 @@ VALID:
       DATA_AUG: ['None']    # 'None' or 'Motion' is supported, used if the data path points to an augmented dataset or requires augmentation
       LABEL_TYPE: DiffNormalized
       DO_CHUNK: True
-      CHUNK_LENGTH: 128  #only support for factor of 512
+      CHUNK_LENGTH: 256  #only support for factor of 512
       CROP_FACE:
         DO_CROP_FACE: True
         BACKEND: 'HC'    # HC for Haar Cascade, RF for RetinaFace
@@ -83,7 +83,7 @@ TEST:
       DATA_TYPE: ['DiffNormalized'] #if use physnet, should be DiffNormalized
       LABEL_TYPE: DiffNormalized
       DO_CHUNK: True
-      CHUNK_LENGTH: 128  #only support for factor of 512
+      CHUNK_LENGTH: 256  #only support for factor of 512
       CROP_FACE:
         DO_CROP_FACE: True
         BACKEND: 'HC'    # HC for Haar Cascade, RF for RetinaFace
