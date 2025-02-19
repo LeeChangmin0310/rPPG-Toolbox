@@ -1,10 +1,11 @@
 BASE: ['']
 TOOLBOX_MODE: "train_and_test" # "train_and_test"  or "only_test"
 TRAIN:
-  BATCH_SIZE: 4
-  EPOCHS: 30
-  LR: 3e-3
-  MODEL_FILE_NAME: UBFC_UBFC_UBFC_PhysMamba
+  BATCH_SIZE: 2
+  EPOCHS: 10
+  LR: 1e-4
+  MODEL_FILE_NAME: UBFC_UBFC_UBFC_physformer
+
   PLOT_LOSSES_AND_LR: True
   DATA:
     FS: 30
@@ -22,7 +23,7 @@ TRAIN:
       DATA_AUG: ['None']    # 'None' or 'Motion' is supported, used if the data path points to an augmented dataset or requires augmentation
       LABEL_TYPE: DiffNormalized
       DO_CHUNK: True
-      CHUNK_LENGTH: 256  #only support for factor of 512
+      CHUNK_LENGTH: 128  #only support for factor of 512
       CROP_FACE:
         DO_CROP_FACE: True
         BACKEND: 'HC'    # HC for Haar Cascade, RF for RetinaFace
@@ -33,8 +34,8 @@ TRAIN:
           DYNAMIC_DETECTION_FREQUENCY : 30
           USE_MEDIAN_FACE_BOX: False    # This should be used ONLY if dynamic detection is used
       RESIZE:
-        H: 128
-        W: 128
+        H: 256
+        W: 256
 VALID:
   DATA:
     FS: 30
@@ -52,7 +53,7 @@ VALID:
       DATA_AUG: ['None']    # 'None' or 'Motion' is supported, used if the data path points to an augmented dataset or requires augmentation
       LABEL_TYPE: DiffNormalized
       DO_CHUNK: True
-      CHUNK_LENGTH: 256  #only support for factor of 512
+      CHUNK_LENGTH: 128  #only support for factor of 512
       CROP_FACE:
         DO_CROP_FACE: True
         BACKEND: 'HC'    # HC for Haar Cascade, RF for RetinaFace
@@ -63,8 +64,8 @@ VALID:
           DYNAMIC_DETECTION_FREQUENCY : 30
           USE_MEDIAN_FACE_BOX: False    # This should be used ONLY if dynamic detection is used
       RESIZE:
-        H: 128
-        W: 128
+        H: 256
+        W: 256
 TEST:
   METRICS: ['MAE', 'RMSE', 'MAPE', 'Pearson', 'SNR', 'BA']
   USE_LAST_EPOCH: False                   # to use provided validation dataset to find the best epoch, should be false
@@ -83,7 +84,7 @@ TEST:
       DATA_TYPE: ['DiffNormalized'] #if use physnet, should be DiffNormalized
       LABEL_TYPE: DiffNormalized
       DO_CHUNK: True
-      CHUNK_LENGTH: 256  #only support for factor of 512
+      CHUNK_LENGTH: 128  #only support for factor of 512
       CROP_FACE:
         DO_CROP_FACE: True
         BACKEND: 'HC'    # HC for Haar Cascade, RF for RetinaFace
@@ -94,20 +95,28 @@ TEST:
           DYNAMIC_DETECTION_FREQUENCY : 30
           USE_MEDIAN_FACE_BOX: False    # This should be used ONLY if dynamic detection is used
       RESIZE:
-        H: 128
-        W: 128
+        H: 256
+        W: 256
 DEVICE: cuda:0
 NUM_OF_GPU_TRAIN: 1
 LOG:
   PATH: /home/changmin/log
   # SAVE_PLOTS: True
 MODEL:
-  NAME: PhysMamba
+  DROP_RATE: 0.1
+  NAME: PhysFormer
+  PHYSFORMER:                     # Probably need to update these in some meaningful way
+    PATCH_SIZE: 4
+    DIM: 96
+    FF_DIM: 144
+    NUM_HEADS: 4
+    NUM_LAYERS: 12
+    THETA: 0.7
 INFERENCE:
   BATCH_SIZE: 4
   EVALUATION_METHOD: "FFT"        # "FFT" or "peak detection"
   EVALUATION_WINDOW:
     USE_SMALLER_WINDOW: False        # Change this if you'd like an evaluation window smaller than the test video length
-    WINDOW_SIZE: 10        # In seconds
+    WINDOW_SIZE: 30        # In seconds
   MODEL_PATH: ""
   # MODEL_PATH: "/home/changmin/pth/UBFC-rPPG_UBFC-rPPG_UBFC-rPPG_PHYSMAMBA.pth"

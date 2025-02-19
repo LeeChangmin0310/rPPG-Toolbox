@@ -199,7 +199,8 @@ class ViT_ST_ST_Compact3_TDC_gra_sharp(nn.Module):
         classifier: str = 'token',
         #positional_embedding: str = '1d',
         in_channels: int = 3, 
-        frame: int = 160,
+        # frame: int = 160,
+        frame: int = 128,
         theta: float = 0.2,
         image_size: Optional[int] = None,
     ):
